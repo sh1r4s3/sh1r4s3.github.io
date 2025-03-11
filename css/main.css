@@ -1,0 +1,142 @@
+.container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.content {
+    padding-bottom: 5rem;
+}
+
+details > summary {
+    cursor: pointer;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 24px;
+}
+
+p.commit {
+    color: #112030;
+    position: relative;
+    left: 2rem;
+}
+
+body {
+    background-color: white;
+}
+
+p {
+    color: #112030;
+}
+
+p.text {
+    color: #112030;
+    text-indent: 2rem;
+    text-align: justify;
+}
+
+a {
+    color: #336699;
+}
+
+code {
+    color: #ce3434;
+}
+
+.menu-td {
+    padding: 20px;
+}
+
+p.author {
+    position: relative;
+    left: 5rem;
+    color: #618090;
+}
+
+p.text {
+    color: #112030;
+}
+
+.menu-item {
+    color: #112030;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 24px;
+}
+
+.main-info {
+    border: 4px solid #575777;
+    width: 50%;
+    text-align: justify;
+    padding: 6px;
+    border-radius: 16px;
+}
+
+.about {
+    border: 0px;
+    width: 40%;
+    text-align: justify;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: white;
+}
+
+.about-item {
+    color: #575777;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 24px;
+}
+
+.footer-godude {
+    width: 5rem;
+    position: absolute;
+    bottom: 0;
+    left: 90%;
+}
+
+.footer-text {
+    width: 5rem;
+    position: absolute;
+    bottom: 0;
+    left: 1.5rem;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: -1rem;
+    margin: 5rem auto 0;
+    width: 100%;
+    text-align: center;
+}
+
+.img404 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 400px;
+    margin-left: -400px;
+    margin-top: -200px;
+}
+
+.body404 {
+    background-color: #102030;
+}
+
+.menu-td {
+    padding: 20px;
+}
+
+.art-link {
+    color: #00aa11;
+}
+
+.center, .main-info, .about, p.text {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topb {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

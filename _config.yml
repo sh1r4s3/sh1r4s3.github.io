@@ -30,8 +30,13 @@ github_username:  sh1r4s3
 sass:
   style: compressed
 
-# Build settings
-theme: jekyll-theme-console
+# Theme and its settings
+remote_theme: sh1r4s3/jekyll-theme-console
+header_pages:
+  - index.md
+  - about.md
+style: hacker
+
 plugins:
   - jekyll-remote-theme
   - jekyll-feed

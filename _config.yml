@@ -37,6 +37,9 @@ header_pages:
   - about.md
 style: hacker
 
+kramdown:
+  input: Kramdown
+
 plugins:
   - jekyll-remote-theme
   - jekyll-feed

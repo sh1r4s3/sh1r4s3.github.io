@@ -41,10 +41,25 @@ style: hacker
 kramdown:
   input: Kramdown
 
+jekyll-spaceship:
+  processors:
+    - mermaid-processor
+  mermaid-processor:
+    mode: default  # mode value 'pre-fetch' for fetching image at building stage
+    css:
+      class: mermaid
+    syntax:
+      code: 'mermaid!'
+      custom: ['@startmermaid', '@endmermaid']
+    config:
+      theme: dark
+    src: https://mermaid.ink/svg/
+
 plugins:
   - jekyll-remote-theme
   - jekyll-feed
   - jemoji
+  - jekyll-spaceship
 
 # Exclude from processing.
 # The following items will not be processed, by default.

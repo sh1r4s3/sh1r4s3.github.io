@@ -33,24 +33,26 @@ please try again and make sure to give the correct amount of arguments („ᵕ�
 {% endhighlight %}
 
 Alright... but how many arguments do we need to provide? It's time to blow the dust off our disassembler. I'll use the [radare2](https://www.radare.org/n/) tool but the reader can use a tool of their choice -- [objdump](https://www.gnu.org/software/binutils/), [gdb](https://www.sourceware.org/gdb/). First things first, I want to run the full analysis of the code (`aaa`) and get the call graph:
+{% highlight sh linenos %}
+{% raw %}
 
-```mermaid!
-stateDiagram-v2
-  state "[dbg._start]" as node_0
-  state "[reloc.__libc_start_main]" as node_1
-  state "[main]" as node_2
-  state "[sym.imp.strcmp]" as node_3
-  state "[sym.imp.puts]" as node_4
-  state "[entry.fini0]" as node_5
-  state "[fcn.00001050]" as node_6
-  state "[fcn.00001110]" as node_7
-  classDef node fill: #220044, stroke-width: 2pt, color: #00ff00, font-family: "Helvetica", font-style: monospace, font-size: 24px
-  node_0 --> node_1
-  node_2 --> node_3
-  node_2 --> node_4
-  node_5 --> node_6
-  node_5 --> node_7
-```
+   ┌────────────────────┐                    ┌────────────────────┐                              ┌────────────────────┐
+   │  dbg._start        │                    │  main              │                              │  entry.fini0       │
+   └────────────────────┘                    └────────────────────┘                              └────────────────────┘
+         t                                         t                                                   t
+         │                                         │                                                   │
+      ┌──┘                                         │                                                   │
+      │                               ┌────────────│                                                   │
+      │                               │            └────────────┐                                      │
+      │                               │                         │                         ┌────────────│
+      │                               │                         │                         │            └────────────┐
+      │                               │                         │                         │                         │
+┌───────────────────────────┐   ┌────────────────────┐    ┌────────────────────┐    ┌────────────────────┐    ┌────────────────────┐
+│  reloc.__libc_start_main  │   │  sym.imp.strcmp    │    │  sym.imp.puts      │    │  fcn.00001050      │    │  fcn.00001110      │
+└───────────────────────────┘   └────────────────────┘    └────────────────────┘    └────────────────────┘    └────────────────────┘
+
+{% endraw %}
+{% endhighlight %}
 
 On the left side we have our typical libc entry point from `crt0.o` or `crt1.o`. In the middle is application's entry point -- `main()` function. On the right side, we have finalization code from `crtn.o`. Generally, we should focus on the middle column since for developers, `main()` is the entry point. From the call graph we can see that `main()` function uses only 2 external functions: `strcmp()` and `puts()`, nothing new. From this information we can conclude that the original C code, most likely contains all the logic in one function -- `main()`. Let's dive into the `main()` function:
 
